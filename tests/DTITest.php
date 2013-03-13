@@ -40,29 +40,33 @@ class DTITest extends PHPUnit_Framework_TestCase {
 
 	public function testParseSingleDurationShouldSubtractFromCurrentTime()
 	{
-		$baseTime = time();
-
-		$datetime = new DateTime;
-		$datetime->setTimestamp($baseTime);
-
-		$expected = new DateTime;
-		$expected->setTimestamp($baseTime);
+		$datetime = new DateTime('2007-03-01T14:30:00Z');
 
 		list($from, $to) = $this->dti->parse('P1Y2M10DT2H30M', $datetime);
-		$expected->sub(new DateInterval('P1Y2M10DT2H30M'));
 
-		$this->assertEquals($from, $expected);
+		$this->assertEquals($from, new DateTime('2005-12-22T12:00:00Z'));
 		$this->assertEquals($to, $datetime);
 	}
 
 	public function testParseIntervalWithTwoDateTimes()
 	{
-		$datetime = new DateTime;
-
 		list($from, $to) = $this->dti->parse('2007-03-01T13:00:00Z/2008-05-11T15:30:00Z');
 
 		$this->assertEquals(new DateTime('2007-03-01T13:00:00Z'), $from, 'From date does not match');
 		$this->assertEquals(new DateTime('2008-05-11T15:30:00Z'), $to, 'To date does not match');
+	}
+
+	public function testParseIntervalWithDurationAndDateTime()
+	{
+		list($from, $to) = $this->dti->parse('PT2H30M/2007-03-01T13:00:00Z');
+
+		$this->assertEquals(new DateTime('2007-03-01T10:30:00Z'), $from, 'From date does not match');
+		$this->assertEquals(new DateTime('2007-03-01T13:00:00Z'), $to, 'To date does not match');
+	}
+
+	public function testParseIntervalWithDateTimeAndDuration()
+	{
+		// list($from, $to) = $this->dti->parse('2007-03-01T13:00:00Z/P1Y2M10DT2H30M');
 	}
 
 }
