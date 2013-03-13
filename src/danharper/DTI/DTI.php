@@ -30,6 +30,13 @@ class DTI {
 			$fromDate = new DateTime($inputFrom);
 		}
 
+		if ($toDate instanceof DateInterval)
+		{
+			$toDateX = clone $fromDate;
+			$toDateX->add($toDate);
+			$toDate = $toDateX;
+		}
+
 		return array($fromDate, $toDate);
 	}
 
@@ -37,10 +44,20 @@ class DTI {
 	{
 		if ($input)
 		{
-			return new DateTime($input);
+			if (preg_match('/^P/', $input))
+			{
+				return new DateInterval($input);
+			}
+			$date = new DateTime($input);
+		}
+		else
+		{
+			$date = $defaultDate;
 		}
 
-		return $defaultDate;
+
+
+		return $date;
 	}
 
 }

@@ -66,7 +66,10 @@ class DTITest extends PHPUnit_Framework_TestCase {
 
 	public function testParseIntervalWithDateTimeAndDuration()
 	{
-		// list($from, $to) = $this->dti->parse('2007-03-01T13:00:00Z/P1Y2M10DT2H30M');
+		list($from, $to) = $this->dti->parse('2007-03-01T13:00:00Z/P1Y2M10DT2H30M');
+
+		$this->assertEquals(new DateTime('2007-03-01T13:00:00Z'), $from, 'From date does not match');
+		$this->assertEquals(new DateTime('2008-05-11T15:30:00Z'), $to, 'To date does not match');
 	}
 
 }
