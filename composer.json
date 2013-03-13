@@ -1,0 +1,25 @@
+{
+    "name": "danharper/dti",
+    "description": "",
+    "homepage": "https://github.com/danharper/DTI",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Harper",
+            "email": "intouch@danharper.me",
+            "homepage": "http://danharper.me"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "Mockery/Mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "danharper\\DTI": "src/"
+        }
+    }
+}
