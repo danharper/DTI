@@ -2,6 +2,8 @@
 
 Parse ISO 8601 dates and intervals.
 
+[![Build Status](https://travis-ci.org/danharper/DTI.png?branch=master)](https://travis-ci.org/danharper/DTI)
+
 ```php
 $dti = new danharper\DTI;
 ```
