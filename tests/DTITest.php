@@ -35,7 +35,7 @@ class DTITest extends PHPUnit_Framework_TestCase {
 	{
 		$time = new DateTime;
 		list($from, $to) = $this->dti->parse('2007-03-01T13:00:00Z', $time);
-		$this->assertEquals($time, $to);
+		$this->assertEquals($time, $to, 'To date does not match the date given as the default time');
 	}
 
 	public function testParseSingleDurationShouldSubtractFromCurrentTime()
@@ -44,8 +44,8 @@ class DTITest extends PHPUnit_Framework_TestCase {
 
 		list($from, $to) = $this->dti->parse('P1Y2M10DT2H30M', $datetime);
 
-		$this->assertEquals($from, new DateTime('2005-12-22T12:00:00Z'));
-		$this->assertEquals($to, $datetime);
+		$this->assertEquals($from, new DateTime('2005-12-22T12:00:00Z'), 'From date does not match');
+		$this->assertEquals($to, $datetime, 'To date does not match');
 	}
 
 	public function testParseIntervalWithTwoDateTimes()

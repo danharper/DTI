@@ -5,10 +5,6 @@ use DateInterval;
 
 class DTI {
 
-	public function __construct()
-	{
-	}
-
 	public function parse($input, $defaultDate = null)
 	{
 		if ( ! $defaultDate instanceof DateTime)
