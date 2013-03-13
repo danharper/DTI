@@ -9,24 +9,38 @@ class DTI {
 	{
 	}
 
-	public function parse($input, $default_datetime = null)
+	public function parse($input, $defaultDate = null)
 	{
-		if ( ! $default_datetime instanceof DateTime)
+		if ( ! $defaultDate instanceof DateTime)
 		{
-			$default_datetime = new DateTime($default_datetime);
+			$defaultDate = new DateTime($defaultDate);
 		}
 
-		if (preg_match('/^P/', $input))
+		list($inputFrom, $inputTo) = explode('/', $input.'/'); // appending extra / to ensure an index exists
+
+		$toDate = $this->handleToDate($inputTo, $defaultDate);
+
+		if (preg_match('/^P/', $inputFrom))
 		{
-			$output = clone $default_datetime;
-			$output->sub(new DateInterval($input));
+			$fromDate = clone $toDate;
+			$fromDate->sub(new DateInterval($inputFrom));
 		}
 		else
 		{
-			$output = new DateTime($input);
+			$fromDate = new DateTime($inputFrom);
 		}
 
-		return array($output, $default_datetime);
+		return array($fromDate, $toDate);
+	}
+
+	protected function handleToDate($input, DateTime $defaultDate)
+	{
+		if ($input)
+		{
+			return new DateTime($input);
+		}
+
+		return $defaultDate;
 	}
 
 }
