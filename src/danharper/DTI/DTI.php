@@ -14,16 +14,19 @@ class DTI {
 
 		list($inputFrom, $inputTo) = explode('/', $input.'/'); // appending extra / to ensure an index exists
 
+		$fromDate = $this->handleFromDate($inputFrom);
 		$toDate = $this->handleToDate($inputTo, $defaultDate);
 
-		if (preg_match('/^P/', $inputFrom))
+		if ($fromDate instanceof DateInterval and $toDate instanceof DateInterval)
 		{
-			$fromDate = clone $toDate;
-			$fromDate->sub(new DateInterval($inputFrom));
+			throw new Exceptions\InvalidIntervalException('wtf mate');
 		}
-		else
+
+		if ($fromDate instanceof DateInterval)
 		{
-			$fromDate = new DateTime($inputFrom);
+			$fromDateX = clone $toDate;
+			$fromDateX->sub($fromDate);
+			$fromDate = $fromDateX;
 		}
 
 		if ($toDate instanceof DateInterval)
@@ -44,6 +47,16 @@ class DTI {
 		}
 
 		return $input ? new DateTime($input) : $defaultDate;
+	}
+
+	protected function handleFromDate($input)
+	{
+		if (preg_match('/^P/', $input))
+		{
+			return new DateInterval($input);
+		}
+
+		return new DateTime($input);
 	}
 
 }

@@ -72,4 +72,12 @@ class DTITest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(new DateTime('2008-05-11T15:30:00Z'), $to, 'To date does not match');
 	}
 
+	/**
+	 * @expectedException danharper\DTI\Exceptions\InvalidIntervalException
+	 */
+	public function testParseIntervalWithTwoDurationsThrowsException()
+	{
+		$this->dti->parse('P1Y/PT2H30M');
+	}
+
 }
