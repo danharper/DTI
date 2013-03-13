@@ -38,22 +38,12 @@ class DTI {
 
 	protected function handleToDate($input, DateTime $defaultDate)
 	{
-		if ($input)
+		if (preg_match('/^P/', $input))
 		{
-			if (preg_match('/^P/', $input))
-			{
-				return new DateInterval($input);
-			}
-			$date = new DateTime($input);
-		}
-		else
-		{
-			$date = $defaultDate;
+			return new DateInterval($input);
 		}
 
-
-
-		return $date;
+		return $input ? new DateTime($input) : $defaultDate;
 	}
 
 }
