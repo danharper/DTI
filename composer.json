@@ -1,6 +1,6 @@
 {
     "name": "danharper/dti",
-    "description": "",
+    "description": "Parse ISO 8601 date, duration and interval strings into DateTime objects",
     "homepage": "https://github.com/danharper/DTI",
     "license": "MIT",
     "authors": [

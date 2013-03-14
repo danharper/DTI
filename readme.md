@@ -1,8 +1,20 @@
-## DTI (Working Title)
+# DTI
 
 Parse ISO 8601 dates and intervals.
 
 [![Build Status](https://travis-ci.org/danharper/DTI.png?branch=master)](https://travis-ci.org/danharper/DTI)
+
+## Installation
+
+Install via Composer by adding the following line to the dependencies in your composer.json:
+
+```
+danharper/dti: "dev-master"
+```
+
+And run `composer install`/`composer update`
+
+## Usage
 
 ```php
 $dti = new danharper\DTI;
