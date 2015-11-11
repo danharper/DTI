@@ -3,9 +3,12 @@ language: php
 php: 
   - 5.3
   - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
 
-before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev
+sudo: false
 
-script: phpunit
+install: composer install
+
+script: vendor/bin/phpunit
