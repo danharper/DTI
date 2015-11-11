@@ -10,7 +10,7 @@ Parse ISO 8601 dates and intervals.
 Install via Composer by adding the following line to the dependencies in your composer.json:
 
 ```
-danharper/dti: "dev-master"
+danharper/dti: "~1.0"
 ```
 
 And run `composer install`/`composer update`
