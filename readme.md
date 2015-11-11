@@ -3,6 +3,7 @@
 Parse ISO 8601 dates and intervals.
 
 [![Build Status](https://travis-ci.org/danharper/DTI.png?branch=master)](https://travis-ci.org/danharper/DTI)
+[![Total Downloads](https://poser.pugx.org/danharper/dti/downloads)](https://packagist.org/packages/danharper/dti)
 
 ## Installation
 
